@@ -1185,6 +1185,21 @@ class TableTest extends TestCase
     }
 
     /**
+     * Test that find('list') with a limit
+     *
+     * @return void
+     */
+    public function testFindListWithLimit()
+    {
+        $table = new Table([
+            'table' => 'users',
+            'connection' => $this->connection,
+        ]);
+        $query = $table->find('list', ['limit' => 2]);
+        $this->assertCount(2, $query->all());
+    }
+
+    /**
      * Test that find('list') only selects required fields.
      *
      * @return void
